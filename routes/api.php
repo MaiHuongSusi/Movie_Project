@@ -2,32 +2,47 @@
 
 use Illuminate\Http\Request;
 use App\Film;
+use App\TypeFilm;
+use App\FilmTypeFilm;
+Route::post('register', 'UserController@register');
+Route::post('login', 'UserController@authenticate');
+Route::get('open', 'DataController@open');
+
+Route::group(['middleware' => ['jwt.verify']], function() {
+Route::get('user', 'UserController@getAuthenticatedUser');
+Route::get('closed', 'DataController@closed');
+});
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('films', function() {
-    return Film::all();
-});
- 
-Route::get('films/{id_film}', function($id_film) {
-    return Film::find($id_film);
-});
+//GET ALL FILMS
+Route::get('films', 'FilmController@index');
 
-Route::post('films', function(Request $request) {
-    return Film::create($request->all);
-});
+//GET FILM BY ID
+Route::get('films/{id}', 'FilmController@show');
 
-Route::put('films/{id_film}', function(Request $request, $id_film) {
-    $film = Film::findOrFail($id_film);
-    $film->update($request->all());
+//CREATE NEW FILM
+Route::post('films', 'FilmController@store');
 
-    return $film;
-});
+//UPDATE FILM
+Route::put('films/{id_film}', 'FilmController@update');
 
-Route::delete('films/{id_film}', function($id_film) {
-    Film::find($id_film)->delete();
+//DELETE FILM
+Route::delete('films/{id_film}', 'FilmController@delete');
 
-    return 204;
+//GET LIST FILM BY TYPE FILM
+Route::get('films/type/{path}', function($path){
+    $listfilmbytype = DB::table('films')
+        ->join('film_type_films', 'film_type_films.id_film', '=', 'films.id')
+        ->join('type_films', 'type_films.id', '=', 'film_type_films.id_type_film')
+        ->select('films.*')
+        ->where('type_films.path', '=' , $path)
+        ->get();
+
+    return response()->json([
+        'message' => 'Great success!',
+        'listfilmbytype' => $listfilmbytype
+    ]);
 });

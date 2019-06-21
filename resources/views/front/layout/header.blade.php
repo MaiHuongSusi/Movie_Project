@@ -2,7 +2,7 @@
     <div class="container py-1">
         <div class="row align-items-center">
         <div class="col-8 col-md-8 col-lg-4">
-            <h1 class="mb-0"><a href="index.html" class="text-white h2 mb-0"><strong>Galaxy<span class="text-primary">.</span></strong></a></h1>
+            <h1 class="mb-0"><a href="/" class="text-white h2 mb-0"><strong>Galaxy<span class="text-primary">.</span></strong></a></h1>
         </div>
         <div class="col-4 col-md-4 col-lg-8">
             <nav class="site-navigation text-right text-md-right" role="navigation">
@@ -13,24 +13,24 @@
                 <li class="active">
                 <a href="/">Home</a>
                 </li>
-                <li><a href="/phim-moi">Phim mới</a></li>
-                <li><a href="/phim-chieu-rap">Phim chiếu rạp</a></li>
+                <li><a href="/films/type/new-film">Phim mới</a></li>
+                <li><a href="/films/type/cinema-film">Phim chiếu rạp</a></li>
                 <li class="has-children">
                 Thể loại
                 <ul class="dropdown arrow-top">
-                    <li><a href="/phim-tinh-cam">Phim tình cảm</a></li>
-                    <li><a href="/phim-hanh-dong">Phim hành động</a></li>
-                    <li><a href="/phim-tam-ly">Phim tâm lý</a></li>
-                    <li><a href="/phim-co-trang">Phim cổ trang</a></li>
-                    <li><a href="/phim-hoat-hinh">Phim hoạt hình</a></li>
-                    <li><a href="/phim-anh-hung">Phim anh hùng</a></li>                      
+                    <li><a href="/films/type/romantic-film">Phim tình cảm</a></li>
+                    <li><a href="/films/type/action-film">Phim hành động</a></li>
+                    <li><a href="/films/type/drama-film">Phim tâm lý</a></li>
+                    <li><a href="/films/type/historical-film">Phim cổ trang</a></li>
+                    <li><a href="/films/type/cartoon-film">Phim hoạt hình</a></li>
+                    <li><a href="/films/type/hero-film">Phim anh hùng</a></li>
                 </ul>
                 </li>
                 <li><a href="/login">Đăng nhập</a></li>
             </ul>
             </nav>
         </div>
-        
+
 
         </div>
     </div>

@@ -4,6 +4,13 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Validator;
+use Auth;
+use App\User;
+use Illuminate\Support\Facades\Hash;
+use JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
 
 class LoginController extends Controller
 {
@@ -35,5 +42,39 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+    function index()
+    {
+     return view('front.pages.login');
+    }
+
+    function checklogin(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        try {
+            if ($token = JWTAuth::attempt($credentials)) {
+                return redirect('/successlogin');
+            } else {
+                return response()->json(['error' => 'invalid_credentials'], 400);
+            }
+        } catch (JWTException $e) {
+            return response()->json(['error' => 'could_not_create_token'], 500);
+        }
+
+        return response()->json(compact('token'));
+        console.log($token);
+
+    }
+
+    function successlogin()
+    {
+     return view('front.pages.successlogin');
+    }
+
+    function logout()
+    {
+     Auth::logout();
+     return redirect('/');
     }
 }

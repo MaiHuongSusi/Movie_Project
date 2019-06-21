@@ -1,8 +1,6 @@
 @extends('front.layout.default')
-@section('content') 
-@php( $listfilm = \App\Film::all() )  
-
-<div class="site-blocks-cover overlay" style="background-image: url('images/hero_bg_3.jpg');" data-aos="fade" data-stellar-background-ratio="0.5" data-aos="fade">
+@section('content')
+    <div class="site-blocks-cover overlay" style="background-image: url('images/hero_bg_3.jpg');" data-aos="fade" data-stellar-background-ratio="0.5" data-aos="fade">
       <div class="container">
         <div class="row align-items-center justify-content-center">
           <div class="col-md-7 text-center" data-aos="fade-up" data-aos-delay="400">
@@ -10,7 +8,7 @@
           </div>
         </div>
       </div>
-    </div>   
+    </div>
     <div class="site-section" >
       <div class="container" style="margin-top: 45px">
         <div class="row">
@@ -19,13 +17,13 @@
           </div>
         </div>
         <div class="row">
-        @foreach($listfilm as $row)
+        @foreach($listnewfilm as $row)
           <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100" style="padding-bottom: 35px;">
             <a href="#" class="unit-9">
-              <div class="image" style="background-image: url({{$row['link_avt']}});"></div>
+              <div class="image" style="background-image: url({{$row->link_avt}});"></div>
               <div class="unit-9-content">
-                <h2>{{ $row['vn_name'] }}</h2>
-                <span>{{ $row['en_name'] }}</span>
+                <h2>{{ $row->vn_name }}</h2>
+                <span>{{ $row->en_name}}</span>
               </div>
             </a>
           </div>
@@ -44,23 +42,185 @@
           </div>
         </div>
         <div class="row">
-        @foreach($listfilm as $row)
-          <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100" style="padding-bottom: 35px;">
-            <a href="#" class="unit-9">
-              <div class="image" style="background-image: url({{$row['link_avt']}});"></div>
-              <div class="unit-9-content">
-                <h2>{{ $row['vn_name'] }}</h2>
-                <span>{{ $row['en_name'] }}</span>
-              </div>
-            </a>
-          </div>
-        @endforeach
+            @foreach($listcinemafilm as $row)
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100" style="padding-bottom: 35px;">
+              <a href="#" class="unit-9">
+                <div class="image" style="background-image: url({{$row->link_avt}});"></div>
+                <div class="unit-9-content">
+                  <h2>{{ $row->vn_name }}</h2>
+                  <span>{{ $row->en_name}}</span>
+                </div>
+              </a>
+            </div>
+          @endforeach
         </div>
         </div>
-        
+
       </div>
     </div>
-    
+
+    <div class="site-section">
+
+        <div class="container">
+
+          <div class="row">
+            <div class="site-section-heading text-center mb-5 w-border col-md-6 mx-auto" data-aos="fade-up">
+              <h2 class="mb-5">Phim tình cảm</h2>
+            </div>
+          </div>
+          <div class="row">
+              @foreach($listromanticfilm as $row)
+              <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100" style="padding-bottom: 35px;">
+                <a href="#" class="unit-9">
+                  <div class="image" style="background-image: url({{$row->link_avt}});"></div>
+                  <div class="unit-9-content">
+                    <h2>{{ $row->vn_name }}</h2>
+                    <span>{{ $row->en_name}}</span>
+                  </div>
+                </a>
+              </div>
+            @endforeach
+          </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="site-section">
+
+        <div class="container">
+
+          <div class="row">
+            <div class="site-section-heading text-center mb-5 w-border col-md-6 mx-auto" data-aos="fade-up">
+              <h2 class="mb-5">Phim hành động</h2>
+            </div>
+          </div>
+          <div class="row">
+              @foreach($listactionfilm as $row)
+              <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100" style="padding-bottom: 35px;">
+                <a href="#" class="unit-9">
+                  <div class="image" style="background-image: url({{$row->link_avt}});"></div>
+                  <div class="unit-9-content">
+                    <h2>{{ $row->vn_name }}</h2>
+                    <span>{{ $row->en_name}}</span>
+                  </div>
+                </a>
+              </div>
+            @endforeach
+          </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="site-section">
+
+        <div class="container">
+
+          <div class="row">
+            <div class="site-section-heading text-center mb-5 w-border col-md-6 mx-auto" data-aos="fade-up">
+              <h2 class="mb-5">Phim tâm lý</h2>
+            </div>
+          </div>
+          <div class="row">
+              @foreach($listdramafilm as $row)
+              <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100" style="padding-bottom: 35px;">
+                <a href="#" class="unit-9">
+                  <div class="image" style="background-image: url({{$row->link_avt}});"></div>
+                  <div class="unit-9-content">
+                    <h2>{{ $row->vn_name }}</h2>
+                    <span>{{ $row->en_name}}</span>
+                  </div>
+                </a>
+              </div>
+            @endforeach
+          </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="site-section">
+
+        <div class="container">
+
+          <div class="row">
+            <div class="site-section-heading text-center mb-5 w-border col-md-6 mx-auto" data-aos="fade-up">
+              <h2 class="mb-5">Phim cổ trang</h2>
+            </div>
+          </div>
+          <div class="row">
+              @foreach($listhistoricalfilm as $row)
+              <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100" style="padding-bottom: 35px;">
+                <a href="#" class="unit-9">
+                  <div class="image" style="background-image: url({{$row->link_avt}});"></div>
+                  <div class="unit-9-content">
+                    <h2>{{ $row->vn_name }}</h2>
+                    <span>{{ $row->en_name}}</span>
+                  </div>
+                </a>
+              </div>
+            @endforeach
+          </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="site-section">
+
+        <div class="container">
+
+          <div class="row">
+            <div class="site-section-heading text-center mb-5 w-border col-md-6 mx-auto" data-aos="fade-up">
+              <h2 class="mb-5">Phim hoạt hình</h2>
+            </div>
+          </div>
+          <div class="row">
+              @foreach($listcartoonfilm as $row)
+              <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100" style="padding-bottom: 35px;">
+                <a href="#" class="unit-9">
+                  <div class="image" style="background-image: url({{$row->link_avt}});"></div>
+                  <div class="unit-9-content">
+                    <h2>{{ $row->vn_name }}</h2>
+                    <span>{{ $row->en_name}}</span>
+                  </div>
+                </a>
+              </div>
+            @endforeach
+          </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="site-section">
+
+        <div class="container">
+
+          <div class="row">
+            <div class="site-section-heading text-center mb-5 w-border col-md-6 mx-auto" data-aos="fade-up">
+              <h2 class="mb-5">Phim anh hùng</h2>
+            </div>
+          </div>
+          <div class="row">
+              @foreach($listherofilm as $row)
+              <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100" style="padding-bottom: 35px;">
+                <a href="#" class="unit-9">
+                  <div class="image" style="background-image: url({{$row->link_avt}});"></div>
+                  <div class="unit-9-content">
+                    <h2>{{ $row->vn_name }}</h2>
+                    <span>{{ $row->en_name}}</span>
+                  </div>
+                </a>
+              </div>
+            @endforeach
+          </div>
+          </div>
+
+        </div>
+      </div>
+
     <div class="site-section bg-dark block-13">
       <div class="container" data-aos="fade-up">
         <div class="row">
@@ -70,9 +230,9 @@
           </div>
         </div>
         <div class="nonloop-block-13 owl-carousel">
-          
+
           <div class="text-center p-3 p-md-5 bg-white">
-            <div class="mb-4">            
+            <div class="mb-4">
               <img src="images/person_1.jpg" alt="Image" class="w-50 mx-auto img-fluid rounded-circle">
             </div>
             <div class="text-black">
@@ -82,7 +242,7 @@
           </div>
 
           <div class="text-center p-3 p-md-5 bg-white">
-            <div class="mb-4">            
+            <div class="mb-4">
               <img src="images/person_2.jpg" alt="Image" class="w-50 mx-auto img-fluid rounded-circle">
             </div>
             <div class="text-black">
@@ -92,7 +252,7 @@
           </div>
 
           <div class="text-center p-3 p-md-5 bg-white">
-            <div class="mb-4">            
+            <div class="mb-4">
               <img src="images/person_3.jpg" alt="Image" class="w-50 mx-auto img-fluid rounded-circle">
             </div>
             <div class="text-black">
@@ -102,7 +262,7 @@
           </div>
 
           <div class="text-center p-3 p-md-5 bg-white">
-            <div class="mb-4">            
+            <div class="mb-4">
               <img src="images/person_1.jpg" alt="Image" class="w-50 mx-auto img-fluid rounded-circle">
             </div>
             <div class="text-black">
@@ -112,7 +272,7 @@
           </div>
 
           <div class="text-center p-3 p-md-5 bg-white">
-            <div class="mb-4">            
+            <div class="mb-4">
               <img src="images/person_2.jpg" alt="Image" class="w-50 mx-auto img-fluid rounded-circle">
             </div>
             <div class="text-black">
@@ -122,7 +282,7 @@
           </div>
 
           <div class="text-center p-3 p-md-5 bg-white">
-            <div class="mb-4">            
+            <div class="mb-4">
               <img src="images/person_4.jpg" alt="Image" class="w-50 mx-auto img-fluid rounded-circle">
             </div>
             <div class="text-black">
@@ -133,8 +293,8 @@
 
         </div>
       </div>
-    </div>  
-        
+    </div>
+
     <div class="site-section">
       <div class="container" data-aos="fade-up">
         <div class="row">
@@ -283,7 +443,7 @@
             <div class="p-4 bg-white">
               <span class="d-block text-secondary small text-uppercase">Jan 20th, 2019</span>
               <h2 class="h5 text-black mb-3"><a href="single.html">This Is The Day, Party, Party!</a></h2>
-              
+
             </div>
           </div>
           <div class="col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade-up" data-aos-delay="200">
@@ -291,7 +451,7 @@
             <div class="p-4 bg-white">
               <span class="d-block text-secondary small text-uppercase">Jan 20th, 2019</span>
               <h2 class="h5 text-black mb-3"><a href="single.html">This Is The Day, Party, Party!</a></h2>
-              
+
             </div>
           </div>
           <div class="col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade-up" data-aos-delay="300">
@@ -299,11 +459,10 @@
             <div class="p-4 bg-white">
               <span class="d-block text-secondary small text-uppercase">Jan 20th, 2019</span>
               <h2 class="h5 text-black mb-3"><a href="single.html">This Is The Day, Party, Party!</a></h2>
-              
+
             </div>
           </div>
         </div>
       </div>
     </div>
 @stop
-    

@@ -3,7 +3,7 @@
   <head>
      @include('front.layout.head')
   </head>
-  <body>      
+  <body>
     <div class="site-wrap">
       <header class="row">
         @include('front.layout.header')

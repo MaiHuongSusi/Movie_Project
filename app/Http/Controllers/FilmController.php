@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Film; 
+use App\Film;
 use App\TypeFilm;
+use App\FilmTypeFilm;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Str;
 
 class FilmController extends Controller
 {
@@ -15,9 +18,10 @@ class FilmController extends Controller
         return Film::all();
     }
 
-    public function show($id_film)
+    public function show($idfilm)
     {
-        return Film::find($id_film);
+        return Film::find($idfilm);
+
     }
 
     public function store(Request $request)
@@ -26,7 +30,7 @@ class FilmController extends Controller
         return response()->json([
             'message' => 'Great success! New film created',
             'film' => $film
-        ]);        
+        ]);
     }
 
     public function update(Request $request, $id_film)
@@ -46,13 +50,67 @@ class FilmController extends Controller
         return 204;
     }
 
-    public function showListFilmByType($type_name)
+    public function showListFilmByType($path)
     {
-        $idtype = DB::table('type_films')->where('name_type', $type_name)->value('id');
-        $listfilmbytype = DB::table('films')->where('id_type', $idtype);
-        return response()->json([
-            'message' => 'Great success!',
-            'listfilmbytype' => $listfilmbytype
-        ]);
+        $listfilmbytype = DB::table('films')
+            ->join('film_type_films', 'film_type_films.id_film', '=', 'films.id')
+            ->join('type_films', 'type_films.id', '=', 'film_type_films.id_type_film')
+            ->select('films.*')
+            ->where('type_films.path', '=' , $path)
+            ->get();
+
+        $para = \Request::segment(3);
+        switch($para){
+            case("new-film"):
+                $path = "new-film";
+                $h = "PHIM MỚI";
+                break;
+            case("romantic-film"):
+                $path = "romantic-film";
+                $h = "PHIM TÌNH CẢM";
+                break;
+            case("cinema-film"):
+            $path = "cinema-film";
+                $h = "PHIM CHIẾU RẠP";
+                break;
+            case("action-film"):
+            $path ="action-film";
+                $h = "PHIM HÀNH ĐỘNG";
+                break;
+            case("drama-film"):
+            $path ="drama-film";
+                $h = "PHIM TÂM LÝ";
+                break;
+            case("historical-film"):
+            $path ="historical-film";
+                $h = "PHIM CỔ TRANG";
+                break;
+            case("cartoon-film"):
+            $path ="cartoon-film";
+                $h = "PHIM HOẠT HÌNH";
+                break;
+            case("hero-film"):
+            $path ="hero-film";
+                $h = "PHIM ANH HÙNG";
+                break;
+        };
+        return view('front.pages.typefilm',  compact('listfilmbytype', 'para', 'h'));
     }
+
+    public function showTypeOfFilm($idfilm){
+        $type = DB::table('films')
+            ->join('film_type_films','film_type_films.id_film', '=', 'films.id')
+            ->join('type_films', 'type_films.id', '=', 'film_type_films.id_type_film')
+            ->select('type_films.name_type')
+            ->where('films.id', $idfilm)
+            ->get();
+        return $type;
+    }
+    public function showIndexFilm($idfilm){
+        $film = Film::find($idfilm);
+        $type = FilmController::showTypeOfFilm($idfilm);
+        $counttype = count($type);
+        return view('front.pages.indexfilm', compact('film', 'type', 'counttype'));
+    }
+
 }
